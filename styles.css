@@ -93,7 +93,7 @@ h3 {
   margin-block-start: var(--margin-block-section);
 }
 
-/* 4. MACROESTRUCTURA CON CSS GRID (grid-template-areas) */
+/* 4. ESTRUCTURA CON CSS GRID (grid-template-areas) */
 .header-container {
   max-width: 1200px;
   margin-inline: auto;
@@ -227,4 +227,77 @@ h3 {
 .card-footer button:focus-visible {
   outline: 3px solid #ffbf47;
   outline-offset: 2px;
+}
+
+/* 6. RESPONSIVE DESIGN GLOBAL CON MEDIA QUERIES (@media) */
+
+/* Adaptación para Pantallas Pequeñas y Móviles (< 768px) */
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "sidebar"
+      "content";
+    margin-block: 1rem;
+  }
+
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .main-nav ul {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+/*  7. DISEÑO RESPONSIVO DE COMPONENTES CON CONTAINER QUERIES (@container) */
+
+/* 1. Declarar el contenedor y definir su contexto de medición */
+.content-area {
+  container-type: inline-size;
+  container-name: main-content-container;
+}
+
+/* 2. Regla de Container Query: Si el contenedor mide 500px o más,
+      reorganizar la tarjeta interna a un layout horizontal */
+@container main-content-container (min-width: 500px) {
+  .cards-grid {
+    grid-template-columns: 1fr; /* Ocupa el ancho completo */
+  }
+
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .card-header {
+    margin-block-end: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .card-body {
+    margin-block-end: 0;
+  }
+
+  .card-footer button {
+    width: auto;
+    padding-inline: 1.5rem;
+  }
+}
+
+/* 8. FALLBACK PARA NAVEGADORES ANTIGUOS SIN SOPORTE DE CONTAINER QUERIES */
+@supports not (container-type: inline-size) {
+  @media (min-width: 600px) {
+    .card-wrapper {
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
 }
