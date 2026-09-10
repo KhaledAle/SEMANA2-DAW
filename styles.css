@@ -1,0 +1,94 @@
+/* 1. VARIABLES CSS (CUSTOM PROPERTIES) & MODO DE COLOR */
+:root {
+  /* Paleta de colores en Modo Claro (Accesibilidad de contraste WCAG 2.1 AA) */
+  --bg-color: #f8f9fa;
+  --surface-color: #ffffff;
+  --text-primary: #1a1a1a;        /* Relación de contraste > 7:1 */
+  --text-secondary: #4a5568;
+  --primary-color: #0056b3;      /* Azul accesible con texto blanco */
+  --primary-focus: #003d80;
+  --border-color: #cbd5e1;
+  --badge-bg: #e2e8f0;
+
+  /* Espaciado Lógico calculado con calc() */
+  --space-unit: 1rem;
+  --padding-inline-container: calc(var(--space-unit) * 1.5); /* 1.5rem */
+  --margin-block-section: calc(var(--space-unit) * 2);        /* 2rem */
+
+  /* Tipografía Fluida calculada con clamp() y calc() */
+  --font-base: clamp(1rem, calc(0.9rem + 0.4vw), 1.125rem);      /* 16px a 18px */
+  --font-h1: clamp(2rem, calc(1.36rem + 2.85vw), 3.5rem);        /* 32px a 56px */
+  --font-h2: clamp(1.5rem, calc(1.2rem + 1.2vw), 2.25rem);       /* 24px a 36px */
+  --font-h3: clamp(1.2rem, calc(1.05rem + 0.6vw), 1.5rem);       /* 19.2px a 24px */
+}
+
+/* 2. RESET Y PROPIEDADES LÓGICAS BASE */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--font-base);
+  line-height: 1.6;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+}
+
+/* Estilo del Skip-Link para Accesibilidad por Teclado */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: top 0.2s ease-in-out;
+}
+
+/* Se hace visible solo cuando recibe foco mediante la tecla TAB */
+.skip-link:focus-visible {
+  top: 1rem;
+  outline: 3px solid #ffbf47;
+}
+
+/* 3. ESTILOS DE ENCABEZADOS Y ESPACIADOS LÓGICOS */
+h1 {
+  font-size: var(--font-h1);
+  line-height: 1.1;
+  margin-block-end: calc(var(--space-unit) * 0.75);
+}
+
+h2 {
+  font-size: var(--font-h2);
+  margin-block-end: calc(var(--space-unit) * 0.5);
+}
+
+h3 {
+  font-size: var(--font-h3);
+}
+
+/* Uso estricto de propiedades lógicas en lugar de margin-left/top */
+.site-header {
+  background-color: var(--surface-color);
+  border-block-end: 1px solid var(--border-color);
+  padding-block: var(--space-unit);
+  padding-inline: var(--padding-inline-container);
+}
+
+.site-footer {
+  background-color: var(--surface-color);
+  border-block-start: 1px solid var(--border-color);
+  padding-block: var(--space-unit);
+  padding-inline: var(--padding-inline-container);
+  text-align: center;
+  margin-block-start: var(--margin-block-section);
+}
