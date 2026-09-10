@@ -92,3 +92,139 @@ h3 {
   text-align: center;
   margin-block-start: var(--margin-block-section);
 }
+
+/* 4. MACROESTRUCTURA CON CSS GRID (grid-template-areas) */
+.header-container {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+/* Layout Principal con CSS Grid */
+.app-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "sidebar content";
+  gap: calc(var(--space-unit) * 1.5);
+  max-width: 1200px;
+  margin-inline: auto;
+  margin-block: var(--margin-block-section);
+  padding-inline: var(--padding-inline-container);
+  min-height: calc(100vh - 200px);
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--surface-color);
+  padding: calc(var(--space-unit) * 1.25);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.content-area {
+  grid-area: content;
+}
+
+/* 5. COMPONENTES INTERNOS CON FLEXBOX (Nav & Cards) */
+
+/* Navegación Principal con Flexbox */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.main-nav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 600;
+  padding-block: 0.25rem;
+  border-block-end: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible {
+  color: var(--primary-color);
+  border-block-end-color: var(--primary-color);
+  outline: none;
+}
+
+/* Grid Interno para Tarjetas de Proyectos */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: calc(var(--space-unit) * 1.25);
+  margin-block-start: var(--space-unit);
+}
+
+/* Estructura Flexbox Interna de cada Tarjeta (<article>) */
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: calc(var(--space-unit) * 1.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: 0.75rem;
+}
+
+.badge {
+  background-color: var(--badge-bg);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.card-body {
+  flex-grow: 1; /* Empuja el footer de la tarjeta hacia abajo */
+  margin-block-end: 1rem;
+}
+
+.card-footer button {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.card-footer button:hover {
+  background-color: var(--primary-focus);
+}
+
+.card-footer button:focus-visible {
+  outline: 3px solid #ffbf47;
+  outline-offset: 2px;
+}
